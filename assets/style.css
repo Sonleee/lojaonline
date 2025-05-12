@@ -1,0 +1,51 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Cor de fundo suave */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo da barra superior */
+.top-bar {
+    background-color: #007BFF; /* Azul */
+    color: white; /* Texto branco */
+    padding: 15px; /* Espaçamento interno */
+    display: flex; /* Usar flexbox para alinhar itens */
+    justify-content: space-between; /* Espaçar os itens */
+    align-items: center; /* Alinhar verticalmente */
+}
+
+.top-bar a {
+    color: white; /* Links brancos */
+    text-decoration: none; /* Remove o sublinhado */
+    margin-left: 15px; /* Espaçamento entre os links */
+}
+
+.top-bar a:hover {
+    text-decoration: underline; /* Sublinha ao passar o mouse */
+}
+
+/* Estilo do container principal */
+.container {
+    max-width: 800px; /* Largura máxima do container */
+    margin: 20px auto; /* Centraliza o container */
+    padding: 20px; /* Espaçamento interno */
+    background-color: white; /* Fundo branco */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilo do título */
+h1 {
+    color: #333; /* Cor do título */
+    margin-bottom: 10px; /* Margem abaixo do título */
+}
+
+/* Estilo do parágrafo */
+p {
+    color: #666; /* Cor do texto */
+    line-height: 1.6; /* Espaçamento entre linhas */
+}
+
+

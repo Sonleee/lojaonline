@@ -23,12 +23,15 @@ if (!$categorias) {
     <meta charset="UTF-8">
     <title>Categorias</title>
     <link rel="stylesheet" href="../assets/stylec.css"> <!-- Inclua seu CSS aqui -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
 <body>
 
 <h2>Categorias</h2>
-<a href="criar.php">Nova Categoria</a>
-<table border="1">
+<div class="mb-3">
+    <a class="btn btn-primary btn-sm" href="criar.php">Nova Categoria</a>
+</div>
+<table class="table table-striped-columns">
     <tr>
         <th>ID</th>
         <th>Nome</th>
@@ -39,13 +42,14 @@ if (!$categorias) {
             <td><?= htmlspecialchars($cat['id']) ?></td>
             <td><?= htmlspecialchars($cat['nome']) ?></td>
             <td>
-                <a href="editar.php?id=<?= $cat['id'] ?>">Editar</a>
-                <a href="excluir.php?id=<?= $cat['id'] ?>" onclick="return confirm('Tem certeza?')">Excluir</a>
+                <a class="btn btn-warning btn-sm" href="editar.php?id=<?= $cat['id'] ?>">Editar</a>
+                <a class="btn btn-danger btn-sm" href="excluir.php?id=<?= $cat['id'] ?>" onclick="return confirm('Tem certeza?')">Excluir</a>
             </td>
         </tr>
     <?php } ?>
 </table>
-
+<a class="btn btn-primary btn-sm" href="../dashboard.php">Voltar</a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
 </body>
 </html>
 

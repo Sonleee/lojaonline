@@ -20,8 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Erro: A categoria com ID $categoria_id não existe.");
     }
 
-    // Insere o produto
-    $insert_query = "INSERT INTO produtos (nome, preco, categoria_id) VALUES ('$nome', $preco, $categoria_id)";
+    // Processa a imagem como BLOB
+    $imagem_blob = null;
+    if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+        $imagem_blob = file_get_contents($_FILES['imagem']['tmp_name']);
+        $imagem_blob = mysqli_real_escape_string($conn, $imagem_blob);
+    }
+
+    $insert_query = "INSERT INTO produtos (nome, preco, categoria_id, imagem) VALUES ('$nome', $preco, $categoria_id, '$imagem_blob')";
+
     if (mysqli_query($conn, $insert_query)) {
         header('Location: index.php');
         exit;
@@ -29,12 +36,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Erro ao adicionar produto: " . mysqli_error($conn);
     }
 }
+
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+<body>
+    
 <h2>Novo Produto</h2>
-<form method="POST">
+
+<form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
     Nome: <input type="text" name="nome" required><br>
+    </div>
+    <div class="mb-3">
     Preço: <input type="number" step="0.01" name="preco" required><br>
+    </div>
+    <div class="mb-3">
+    Imagem: <input type="file" name="imagem" accept="image/*"required><br>
+    </div>
+    <div class="mb-3">
     Categoria: 
     <select name="categoria_id" required>
         <option value="">Selecione</option>
@@ -43,6 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <option value="<?= $c['id'] ?>"><?= $c['nome'] ?></option>
         <?php } ?>
     </select><br>
-    <button type="submit">Salvar</button>
+    </div>
+    <div class="mb-3">
+    <button type="submit" class="btn btn-success btn-sm">Salvar</button>
+    </div>
 </form>
-<a href="index.php">Voltar</a>
+<a class="btn btn-primary btn-sm" href="index.php">Voltar</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</body>
+</html>

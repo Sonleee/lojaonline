@@ -4,7 +4,7 @@ if (!isset($_SESSION['logado'])) {
     header('Location: ../login.php');
     exit;
 }
-include '../../includes/conexao.php';
+include '../includes/conexao.php';
 
 $id = intval($_GET['id']);
 mysqli_query($conn, "DELETE FROM produtos WHERE id = $id");
